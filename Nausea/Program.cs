@@ -8,22 +8,30 @@
             {
                 string path = @".\resources\myfile.csv";
                 using StreamReader sr = new(path);
-                string line;
-                string name = "myfile";
+                char[] separators = { ',' };
+                string contentToRead;
+                string nameToLookFor = "myfile";
 
-                while ((line = sr.ReadLine()) != null)
+                while ((contentToRead = sr.ReadLine()) != null)
                 {
-                    if (line.Contains(name))
+                    int counter = 0;
+                    string[] subs = contentToRead.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var sub in subs)
                     {
-                        Console.WriteLine(line);
+                        if (sub.Contains(nameToLookFor))
+                        {
+                            int pos = sub.IndexOf('.'); // 6
+                            string newname = sub.Substring(0, pos);
+
+                            counter++;
+                            Console.WriteLine($"#{counter}, {newname}");
+                        }
                     }
-                    Console.WriteLine("");
                 }
             }
-
             catch (Exception e)
             {
-
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
