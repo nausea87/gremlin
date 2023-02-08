@@ -6,8 +6,8 @@
         {
             try
             {
-                // Change path accordingly or put file in bin/Debug/net6.0
-                string path = @".\myfile.csv";
+                // string path = path to myfile.csv in project Nausea
+                string path = @"C:\Users\nAuseA\Desktop\gremlin\Nausea\myfile.csv";
                 using StreamReader sr = new(path);
                 char[] separators = { ',', ' ', '\n', '\t' };
                 string contentToRead;
@@ -28,10 +28,8 @@
                             occurrences++;
                             Console.WriteLine($"#{occurrences}, {name}");
                         }
-
                         // Alternativly show where !sub.Contains(nameToLookFor)
                         //else Console.WriteLine(sub);
-
                     }
                 }
             }
