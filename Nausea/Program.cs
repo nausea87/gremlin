@@ -5,9 +5,8 @@
         public static void Main()
         {
             try
-            {
-                // string path = path to myfile.csv in project Nausea
-                string path = @"C:\Users\nAuseA\Desktop\gremlin\Nausea\myfile.csv";
+            {                
+                string path = FindFile.GetFilePath();
                 using StreamReader sr = new(path);
                 char[] separators = { ',', ' ', '\n', '\t' };
                 string contentToRead;
