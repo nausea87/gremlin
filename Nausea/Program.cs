@@ -6,14 +6,15 @@
         {
             try
             {
-                string path = @".\resources\myfile.csv";
+                // Change path accordingly or put file in bin/Debug/net6.0
+                string path = @".\myfile.csv";
                 using StreamReader sr = new(path);
-                char[] separators = { ',' };
+                char[] separators = { ',', ' ', '\n', '\t' };
                 string contentToRead;
 
-                while ((contentToRead = sr.ReadLine()) != null)
+                while ((contentToRead = sr.ReadToEnd()) != null)
                 {
-                    int counter = 0;
+                    int occurrences = 0;
                     string nameToLookFor = "myfile";
                     string[] subs = contentToRead.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
@@ -24,9 +25,13 @@
                             int pos = sub.IndexOf('.');
                             string name = sub.Substring(0, pos);
 
-                            counter++;
-                            Console.WriteLine($"#{counter}, {name}");
+                            occurrences++;
+                            Console.WriteLine($"#{occurrences}, {name}");
                         }
+
+                        // Alternativly show where !sub.Contains(nameToLookFor)
+                        //else Console.WriteLine(sub);
+
                     }
                 }
             }
