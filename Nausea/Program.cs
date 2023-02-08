@@ -10,22 +10,22 @@
                 using StreamReader sr = new(path);
                 char[] separators = { ',' };
                 string contentToRead;
-                string nameToLookFor = "myfile";
 
                 while ((contentToRead = sr.ReadLine()) != null)
                 {
                     int counter = 0;
+                    string nameToLookFor = "myfile";
                     string[] subs = contentToRead.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
                     foreach (var sub in subs)
                     {
                         if (sub.Contains(nameToLookFor))
                         {
-                            int pos = sub.IndexOf('.'); // 6
-                            string newname = sub.Substring(0, pos);
+                            int pos = sub.IndexOf('.');
+                            string name = sub.Substring(0, pos);
 
                             counter++;
-                            Console.WriteLine($"#{counter}, {newname}");
+                            Console.WriteLine($"#{counter}, {name}");
                         }
                     }
                 }
